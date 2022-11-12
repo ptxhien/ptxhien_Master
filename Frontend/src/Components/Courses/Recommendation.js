@@ -576,7 +576,7 @@ function RecommendationCourses({
                               target="_blank"
                               to={{
                                 pathname: `course/${item.courseID}`,
-                                search: `?skillsAcquired=${coursesReducer.skills_acquired}`,
+                                search: `?skillsAcquired=${Object.keys(coursesReducer.skills_acquired).join(", ")}`,
                               }}
                               className="btn-wide mb-2 btn-icon d-inline-block btn btn-outline-primary"
                             >

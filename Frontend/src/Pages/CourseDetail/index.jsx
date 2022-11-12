@@ -208,8 +208,11 @@ const CourseDetail = () => {
                     <div className="d-flex flex-wrap m-n1">
                       {course.technologySkill
                         .split(", ")
-                        .map((skill, index) => (
-                          <a
+                        .map((skill, index) => {
+                          console.log(skill)
+                          console.log(skillsAcquiredArray)
+                          return (
+                            <a
                             href=""
                             onClick={(e) => e.preventDefault()}
                             className={`btn ${
@@ -221,7 +224,8 @@ const CourseDetail = () => {
                           >
                             {skill}
                           </a>
-                        ))}
+                          )
+                          })}
                     </div>
                   </div>
                 </div>
