@@ -40,14 +40,14 @@ def Find_Skill_Weight(occupation_id):
     for i in data:
         if i['JobID'] == occupation_id:
             d_skill = i['Weight_Technology']
-    d_skill = (dict(sorted(d_skill.items(), key = lambda x: x[1], reverse = True)))    
+    d_skill = (dict(sorted(d_skill.items(), key = lambda x: x[1], reverse = True)))
     return d_skill
 
 # 3. Find Skill User Missing
 def FindMissingSkill_1(df_attribute_requirement):
     occupation = df_attribute_requirement.Occupation[0]
-    d_skill = Find_Skill_Weight(occupation)
-    lst_weight_sort = d_skill
+    lst_weight_sort = Find_Skill_Weight(occupation)
+    # lst_weight_sort = d_skill
 
     skill_now_learner = []
     for id, row in df_attribute_requirement.iterrows():
@@ -108,7 +108,7 @@ def FindCourseFromMissingSkill(df, df_attribute_requirement):
                             continue
                         else:
                             df_Course_Filter.at[id,skill[k]] = '1'
-            
+
         count_row = df_Course_Filter.shape[0]
         for i in range(count_row):
             skillset = ""
@@ -120,7 +120,7 @@ def FindCourseFromMissingSkill(df, df_attribute_requirement):
                     else:
                         skillset = skillset + ", " + skill[k]
             df_Course_Filter.at[i, 'Tech_Skill'] = skillset
-        
+
         skills=df_Course_Filter["Tech_Skill"]
         skills=skills.str.split(", ") 
         for i, s in enumerate(skills):
@@ -128,7 +128,7 @@ def FindCourseFromMissingSkill(df, df_attribute_requirement):
                 df_Course_Filter.at[i, 'Num_Skill'] = len(s)
             else:
                 df_Course_Filter.at[i, 'Num_Skill'] = '0'
-        
+
         df_Course_Filter.Num_Skill = df_Course_Filter.Num_Skill.apply(lambda x : int(x))
         df_Course_Filter = df_Course_Filter.loc[df_Course_Filter['Num_Skill'] > 0] 
 
@@ -142,9 +142,9 @@ def FindCourseFromMissingSkill(df, df_attribute_requirement):
                         if tec.lower().strip() == key.lower().strip():
                             sum_weight += value
                         else:
-                            continue  
+                            continue
             df_Course_Filter.at[id, 'Sum_Weight'] = sum_weight
-            
+
             lst_A = []
             lst_B = []
             for tec in row.loc['technologySkill'].split(', '):
