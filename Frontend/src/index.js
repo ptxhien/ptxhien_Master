@@ -9,7 +9,6 @@ import "./assets/base.scss";
 import Main from "./Pages/Main";
 import configureStore from "./redux/config/configureStore";
 import { Provider } from "react-redux";
-import { ProvideCart } from "./hooks/useCart";
 
 const store = configureStore();
 const rootElement = document.getElementById("root");
@@ -18,9 +17,7 @@ const renderApp = (Component) => {
   ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
-        <ProvideCart>
-          <Component />
-        </ProvideCart>
+        <Component />
       </HashRouter>
     </Provider>,
     rootElement

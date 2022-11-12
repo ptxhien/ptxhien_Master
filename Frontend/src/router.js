@@ -6,7 +6,6 @@ import Dashboard from "./Pages/Dashboards";
 import History from "./Pages/History";
 import CourseDetail from "./Pages/CourseDetail";
 import EditProfile from "./Pages/Accounts/EditProfile";
-import Cart from "./Pages/Cart";
 
 const routes = [
   {
@@ -17,7 +16,7 @@ const routes = [
   },
   {
     path: "/course/:id",
-    main: () => <CourseDetail />,
+    main: () => <CourseDetail/>,
     auth: false,
   },
   {
@@ -42,12 +41,6 @@ const routes = [
     path: "/update-profile",
     exact: true,
     main: () => <EditProfile></EditProfile>,
-    auth: false,
-  },
-  {
-    path: "/cart",
-    exact: true,
-    main: () => <Cart />,
     auth: false,
   },
 ];
